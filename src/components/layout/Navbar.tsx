@@ -10,14 +10,30 @@ import {
     MobileNavHeader,
     MobileNavToggle,
     MobileNavMenu,
-} from "@/components/ui/resizable-navbar";
+} from "@/components/layout/resizable-navbar";
 import { useState } from "react";
+import { ModeToggle } from "./ModeToggler";
+import { authApi, useLogoutMutation, useUserInfoQuery } from "@/redux/features/auth/auth.api";
+import { useAppDispatch } from "@/redux/hook";
+import { Button } from "../ui/button";
+import { Link } from "react-router";
 
 export function NavBar() {
+
+
+    const { data } = useUserInfoQuery(undefined);
+    const [logout] = useLogoutMutation();
+    const dispatch = useAppDispatch();
+
+    const handleLogout = async () => {
+        await logout(undefined);
+        dispatch(authApi.util.resetApiState());
+    };
+
     const navItems = [
         {
-            name: "Features",
-            link: "#features",
+            name: "Home",
+            link: "home",
         },
         {
             name: "Pricing",
@@ -39,8 +55,21 @@ export function NavBar() {
                     <Logo />
                     <NavItems items={navItems} />
                     <div className="flex items-center gap-4">
-                        <NavbarButton variant="secondary">Login</NavbarButton>
-                        <NavbarButton variant="primary">Book a call</NavbarButton>
+                        <ModeToggle />
+                        {data?.data?.email && (
+                            <Button
+                                onClick={handleLogout}
+                                variant="outline"
+                                className="text-sm"
+                            >
+                                Logout
+                            </Button>
+                        )}
+                        {!data?.data?.email && (
+                            <Button asChild className="text-sm">
+                                <Link to="/login">Login</Link>
+                            </Button>
+                        )}
                     </div>
                 </NavBody>
 
@@ -69,6 +98,7 @@ export function NavBar() {
                             </a>
                         ))}
                         <div className="flex w-full flex-col gap-4">
+                            <ModeToggle />
                             <NavbarButton
                                 onClick={() => setIsMobileMenuOpen(false)}
                                 variant="primary"
