@@ -6,7 +6,7 @@ const HeroSection = () => {
     return (
         <section>
             <div className="container">
-                <div className="bg-muted grid items-center gap-8 lg:grid-cols-2">
+                <div className=" grid items-center gap-8 lg:grid-cols-2">
                     <div className="flex flex-col items-center p-16 text-center lg:items-start lg:text-left">
 
                         <h1 className="my-6 text-pretty text-4xl font-bold lg:text-6xl">
@@ -26,9 +26,9 @@ const HeroSection = () => {
                         </div>
                     </div>
                     <img
-                        src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg"
+                        src="https://i.postimg.cc/x1QKXBmL/Digital-Wallet-vs-Mobile-Wallet.webp"
                         alt="placeholder hero"
-                        className="h-full w-full object-cover"
+                        className="h-full w-full object-cover rounded-[15px]"
                     />
                 </div>
             </div>
