@@ -1,4 +1,3 @@
-import TravelLogin from "@/assets/images/log.jfif";
 import { Link } from "react-router";
 import Logo from "@/assets/icons/Logo";
 import { LoginForm } from "@/components/modules/Authentication/LoginForm";

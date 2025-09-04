@@ -20,16 +20,21 @@ export const adminSidebarItems: ISidebarItem[] = [
     ],
   },
   {
-    title: "Tour Management",
+    title: "Digital-Wallet",
     items: [
       {
         title: "All-Users",
         url: "/admin/all-users",
         component: AllUsers,
       },
-     
+      // {
+      //   title: "Create Agent",
+      //   url: "/admin/all-users",
+      //   component: AllUsers,
+      // },
     ],
   },
+  
 ];
 
 // import AddDivision from "@/pages/Admin/AddDivision";

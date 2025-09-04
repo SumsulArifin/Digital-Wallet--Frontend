@@ -48,13 +48,28 @@ export const authApi = baseApi.injectEndpoints({
             providesTags: ["USER"],
         }),
         allUserInfo: builder.query({
-            query: () => ({
+            query: (params) => ({
                 url: "/user/all-users",
+                method: "GET",
+                params,
+            }),
+
+        }),
+        userById: builder.query({
+            query: (id) => ({
+                url: `/user/singelUser/${id}`,
                 method: "GET",
             }),
             providesTags: ["USER"],
-            transformResponse: (response) => response.data,
-        }),
+          }),
+        updateRole: builder.mutation({
+            query: ({ id, ...body }) => ({
+              url: `/user/update-role/${id}`,
+              method: "PATCH",
+              body,
+            }),
+            invalidatesTags: ["USER"],
+          }),
     }),
 });
 
@@ -65,5 +80,8 @@ export const {
     useUserInfoQuery,
     useLogoutMutation,
     useAllUserInfoQuery,
-    useVerifyOtpMutation
+    useVerifyOtpMutation,
+    useUpdateRoleMutation,
+    useUserByIdQuery
+
 } = authApi;
